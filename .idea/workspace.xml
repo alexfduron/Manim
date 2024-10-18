@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2d9a561c-b163-47df-936a-eba74038eee0" name="Changes" comment="se agregaron las lecciones del 1 al 17">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Clase4_IMG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clase4_IMG.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729268558436</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="se agregaron las lecciones del 1 al 17">
+      <option name="closed" value="true" />
+      <created>1729269283110</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729269283110</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
