@@ -13,7 +13,7 @@ class prueba(Scene):
 
         self.play(Create(cuadro))
         self.play(Transform(cuadro, circulo))
-        self.wait()
+        self.wait(2)
 
 
 
