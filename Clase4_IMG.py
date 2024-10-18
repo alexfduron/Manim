@@ -1,3 +1,4 @@
+import numpy as np
 from manim import *
 from manim.utils.color.X11 import BROWN
 
@@ -117,4 +118,37 @@ class leccion18(Scene):
         self.wait(0.5)
 
 
+class leccion19(MovingCameraScene):
+    def construct(self):
+
+        # creamos los colores con los que vamos a trabajar
+        cielo = "#C4DDFF"
+        azul = "#0016DE"
+        rojo = "#B20600"
+
+        # modificamos el fondo de la pantalla
+        self.camera.background_color = cielo
+
+        # agregamos la imagen svg
+        mapa = SVGMobject(r'.\media\images\Clase4_IMG\honduras.svg')
+        mapa.scale(2.5)
+        mapa.set_color(azul)
+
+        self.play(Write(mapa))
+
+        rejilla = NumberPlane()
+        rejilla.set_color(RED)
+        rejilla.scale(1)
+        self.add(rejilla)
+
+
+        # ahora seleccionamos el area a aplicar el zoom
+        self.camera.frame.save_state()
+        self.play(self.camera.frame.animate.move_to(np.array([-2, 0.5, 0])))
+        self.play(self.camera.frame.animate.scale(0.5))
+        self.play(self.camera.frame.animate.scale(2))
+        self.play(self.camera.frame.animate.move_to(np.array([-1, -2.5, 0])))
+        self.play(self.camera.frame.animate.scale(0.5))
+
+        self.wait(1)
 
