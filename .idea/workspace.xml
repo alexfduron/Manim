@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d9a561c-b163-47df-936a-eba74038eee0" name="Changes" comment="se agregaron las lecciones del 1 al 17">
+    <list default="true" id="2d9a561c-b163-47df-936a-eba74038eee0" name="Changes" comment="se agrego sonido">
+      <change afterPath="$PROJECT_DIR$/Clase5_G.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Clase4_IMG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clase4_IMG.py" afterDir="false" />
     </list>
@@ -16,18 +17,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "alexfduron"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;alexfduron&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/alexfduron/Manim.git",
-    "accountId": "94f0811b-ed9c-4990-b0db-4a1219c00292"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/alexfduron/Manim.git&quot;,
+    &quot;accountId&quot;: &quot;94f0811b-ed9c-4990-b0db-4a1219c00292&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -110,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729269283110</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="se agrego sonido">
+      <option name="closed" value="true" />
+      <created>1729272370337</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729272370337</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,6 +136,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Prueba exitosa" />
     <MESSAGE value="se agregaron las lecciones del 1 al 17" />
-    <option name="LAST_COMMIT_MESSAGE" value="se agregaron las lecciones del 1 al 17" />
+    <MESSAGE value="se agrego sonido" />
+    <option name="LAST_COMMIT_MESSAGE" value="se agrego sonido" />
   </component>
 </project>

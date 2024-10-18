@@ -115,3 +115,6 @@ class leccion18(Scene):
         self.play(Transform(auto, auto1), run_time = 3)
 
         self.wait(0.5)
+
+
+
