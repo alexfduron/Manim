@@ -1,7 +1,6 @@
 import numpy as np
 from manim import *
-from numpy import *
-from typing_extensions import runtime
+
 
 
 class grafica(Scene):
@@ -86,3 +85,83 @@ class grafica(Scene):
         self.play(Transform(curva1, curva0), Transform(eq1, eq0), run_time=1)
 
         self.wait(1)
+
+
+class grafica3D(ThreeDScene):
+    def construct(self):
+
+        # creamos los colores con los que vamos a trabajar
+        cielo = "#C4DDFF"
+        azul = "#0016DE"
+        rojo = "#B20600"
+
+        # modificamos el fondo de la pantalla
+        self.camera.background_color = cielo
+
+        # agregamos el plano cartesiano
+        ax = ThreeDAxes().set_color(azul)
+        x = MathTex("x")
+        x.set_color(azul)
+        x.move_to(np.array([5,0.5,0]))
+        y = MathTex("y")
+        y.set_color(azul)
+        y.move_to(np.array([0.5,5,0]))
+        z = MathTex("z")
+        z.set_color(rojo)
+        z.move_to(np.array([0.5,0,3]))
+
+        self.set_camera_orientation(theta=45*DEGREES, phi=60*DEGREES)
+        self.add(ax, x, y, z)
+
+        # agregamos texto
+        txt3d = MathTex("z = (x^2 + 3y^2)e^{1 - x^2 - y^2}")
+        txt3d.set_color(BLACK)
+        txt3d.to_corner(UL)
+
+        txt1 = MathTex(r"\theta \leftarrow", r"0^\circ ")
+        txt1.set_color(BLACK)
+        txt1.move_to(RIGHT * 5.3 + UP * 3)
+
+        txt2 = MathTex(r"\phi \leftarrow", r"0^\circ ")
+        txt2.set_color(BLACK)
+        txt2.move_to(RIGHT * 5.3 + UP * 1.7)
+
+        txt3 = MathTex(r"\theta \leftarrow", r"{45}^\circ ")
+        txt3.set_color(BLACK)
+        txt3.move_to(RIGHT * 5.3 + UP * 3)
+
+        txt4 = MathTex(r"\phi \leftarrow", r"{60}^\circ ")
+        txt4.set_color(BLACK)
+        txt4.move_to(RIGHT * 5.3 + UP * 1.7)
+
+
+        # agregamos el grafico
+        curva = Surface(lambda u, v: np.array([u, v, (u ** 2 + 3 * v ** 2) * np.exp(1 - u ** 2 - v ** 2)]),
+                        v_range=[-3,3],
+                        u_range=[-3,3],
+                        checkerboard_colors=[RED_D, RED_E],
+                        resolution=(15,15))
+
+        curva.set_fill_by_checkerboard(rojo, azul, opacity=0.5)
+
+
+        # simulamos
+        self.add_fixed_in_frame_mobjects(txt3d)
+        self.play(Write(curva))
+
+        self.add_fixed_in_frame_mobjects(txt1, txt2)
+        self.play(FadeIn(txt1, txt2))
+        self.move_camera(theta=0*DEGREES, phi=0*DEGREES)
+
+        self.play(FadeOut(txt1[1], txt2[1]))
+        self.add_fixed_in_frame_mobjects(txt3[1], txt4[1])
+        self.play(FadeIn(txt3[1], txt4[1]))
+        self.move_camera(theta=PI/4, phi=PI/3)
+
+        # aplicamos rotacion al grafico
+        self.begin_ambient_camera_rotation(rate=0.10)
+
+        self.wait(2)
+
+
+
