@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d9a561c-b163-47df-936a-eba74038eee0" name="Changes" comment="se agrego la funcion de zoom">
+    <list default="true" id="2d9a561c-b163-47df-936a-eba74038eee0" name="Changes" comment="se agrego la grafica 3D">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Clase5_G.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clase5_G.py" afterDir="false" />
     </list>
@@ -134,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729293440547</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="se agrego la grafica 3D">
+      <option name="closed" value="true" />
+      <created>1729304202601</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729304202601</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +162,7 @@
     <MESSAGE value="se agrego sonido" />
     <MESSAGE value="se agrego la clase 5" />
     <MESSAGE value="se agrego la funcion de zoom" />
-    <option name="LAST_COMMIT_MESSAGE" value="se agrego la funcion de zoom" />
+    <MESSAGE value="se agrego la grafica 3D" />
+    <option name="LAST_COMMIT_MESSAGE" value="se agrego la grafica 3D" />
   </component>
 </project>

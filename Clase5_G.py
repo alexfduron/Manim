@@ -107,11 +107,9 @@ class grafica3D(ThreeDScene):
         y.set_color(azul)
         y.move_to(np.array([0.5,5,0]))
         z = MathTex("z")
-        z.set_color(rojo)
+        z.set_color(azul)
         z.move_to(np.array([0.5,0,3]))
 
-        self.set_camera_orientation(theta=45*DEGREES, phi=60*DEGREES)
-        self.add(ax, x, y, z)
 
         # agregamos texto
         txt3d = MathTex("z = (x^2 + 3y^2)e^{1 - x^2 - y^2}")
@@ -136,19 +134,33 @@ class grafica3D(ThreeDScene):
 
 
         # agregamos el grafico
-        curva = Surface(lambda u, v: np.array([u, v, (u ** 2 + 3 * v ** 2) * np.exp(1 - u ** 2 - v ** 2)]),
-                        v_range=[-3,3],
-                        u_range=[-3,3],
-                        checkerboard_colors=[RED_D, RED_E],
-                        resolution=(15,15))
+        curva = Surface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (u ** 2 + 3 * v ** 2) * np.exp(1 - u ** 2 - v ** 2)
+            ]),
+            v_range=[-3,3],
+            u_range=[-3,3],
+            checkerboard_colors=[RED_D, RED_E],
+            resolution=(15,15)
+        )
 
         curva.set_fill_by_checkerboard(rojo, azul, opacity=0.5)
 
 
         # simulamos
+        # orientamos la camara
+        self.set_camera_orientation(theta=45 * DEGREES, phi=60 * DEGREES)
+        self.add(ax, x, y, z)
+
+        # agregamos texto fijo
         self.add_fixed_in_frame_mobjects(txt3d)
+
+        # agregamos el grafico
         self.play(Write(curva))
 
+        # cambio de camara
         self.add_fixed_in_frame_mobjects(txt1, txt2)
         self.play(FadeIn(txt1, txt2))
         self.move_camera(theta=0*DEGREES, phi=0*DEGREES)
@@ -162,6 +174,71 @@ class grafica3D(ThreeDScene):
         self.begin_ambient_camera_rotation(rate=0.10)
 
         self.wait(2)
+
+
+
+class grafica3D_2(ThreeDScene):
+    def construct(self):
+
+        # creamos los colores con los que vamos a trabajar
+        cielo = "#C4DDFF"
+        azul = "#0016DE"
+        rojo = "#B20600"
+
+        # modificamos el fondo de la pantalla
+        self.camera.background_color = cielo
+
+        # agregamos el plano cartesiano
+        ax = ThreeDAxes().set_color(azul)
+        x = MathTex("x")
+        x.set_color(azul)
+        x.move_to(np.array([5, 0.5, 0]))
+        y = MathTex("y")
+        y.set_color(azul)
+        y.move_to(np.array([0.5, 5, 0]))
+        z = MathTex("z")
+        z.set_color(azul)
+        z.move_to(np.array([0.5, 0, 3]))
+
+        # agregamos texto
+        surf1 = Text("Esfera")
+        surf1.set_color(BLACK)
+        surf1.to_corner(UL)
+
+        # agregamos el grafico
+        esfera = Surface(
+            lambda u, v: np.array([
+                2 * np.cos(v) * np.cos(u),
+                2 * np.sin(v) * np.cos(u),
+                2 * np.sin(u)
+            ]),
+            u_range=[-PI, PI],
+            v_range=[0, 2*PI],
+            resolution=(15,30),
+            checkerboard_colors=(rojo, azul),
+            fill_opacity=0.5,
+            stroke_opacity=1,
+            stroke_color=BLACK
+
+
+        )
+
+        # simulamos
+        # orientamos la camara
+        self.set_camera_orientation(theta=45 * DEGREES, phi=60 * DEGREES)
+        self.add(ax, x, y, z)
+
+        # agregamos texto fijo
+        self.add_fixed_in_frame_mobjects(surf1)
+
+        # aplicamos rotacion al grafico
+        self.begin_ambient_camera_rotation(rate=0.10)
+
+        # agregamos el grafico
+        self.play(Write(esfera))
+
+        self.wait(2)
+
 
 
 
