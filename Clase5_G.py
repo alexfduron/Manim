@@ -1,5 +1,7 @@
 import numpy as np
 from manim import *
+from networkx.algorithms.bipartite.basic import color
+from numpy.ma.core import set_fill_value
 
 
 
@@ -209,6 +211,10 @@ class grafica3D_2(ThreeDScene):
         surf2.set_color(BLACK)
         surf2.to_corner(UL)
 
+        surf3 = Text("Catenoide")
+        surf3.set_color(BLACK)
+        surf3.to_corner(UL)
+
         # agregamos el grafico
         esfera = Surface(
             lambda u, v: np.array([
@@ -236,6 +242,28 @@ class grafica3D_2(ThreeDScene):
             resolution=(15, 30)
         )
 
+        catenoide = Surface(
+            lambda u, v: np.array([
+                0.5 * np.cosh(v / 0.5) * np.cos(u),
+                0.5 * np.cosh(v / 0.5) * np.sin(u),
+                v
+            ]),
+            u_range=[-PI, PI],
+            v_range=[-1, 1],
+            resolution=(10, 30),
+
+        )
+
+        catenoide.set_fill_by_value(
+            axes=ax,
+            colors=[
+                (RED, -1),
+                (YELLOW, 0),
+                (GREEN, 1)
+            ],
+            axis=2
+        )
+
         # simulamos
         # orientamos la camara
         self.set_camera_orientation(theta=45 * DEGREES, phi=60 * DEGREES)
@@ -257,6 +285,14 @@ class grafica3D_2(ThreeDScene):
 
         #cambiamos el grafico
         self.play(Transform(esfera, toro))
+
+        # cambiamos el texto fijo
+        self.play(FadeOut(surf2))
+        self.add_fixed_in_frame_mobjects(surf3)
+        self.play(FadeIn(surf3))
+
+        # cambiamos el grafico
+        self.play(Transform(esfera, catenoide))
 
         self.wait(2)
 
