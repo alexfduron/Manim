@@ -205,6 +205,10 @@ class grafica3D_2(ThreeDScene):
         surf1.set_color(BLACK)
         surf1.to_corner(UL)
 
+        surf2 = Text("Toro")
+        surf2.set_color(BLACK)
+        surf2.to_corner(UL)
+
         # agregamos el grafico
         esfera = Surface(
             lambda u, v: np.array([
@@ -219,8 +223,17 @@ class grafica3D_2(ThreeDScene):
             fill_opacity=0.5,
             stroke_opacity=1,
             stroke_color=BLACK
+        )
 
-
+        toro = Surface(
+            lambda u, v: np.array([
+                (3 + 1 * np.cos(v)) * np.cos(u),
+                (3 + 1 * np.cos(v)) * np.sin(u),
+                1 * np.sin(v)
+            ]),
+            u_range=[-PI, PI],
+            v_range=[0, 2*PI],
+            resolution=(15, 30)
         )
 
         # simulamos
@@ -234,8 +247,16 @@ class grafica3D_2(ThreeDScene):
         # aplicamos rotacion al grafico
         self.begin_ambient_camera_rotation(rate=0.10)
 
-        # agregamos el grafico
+        # agregamos el grafico esfera
         self.play(Write(esfera))
+
+        # cambiamos el texto fijo
+        self.play(FadeOut(surf1))
+        self.add_fixed_in_frame_mobjects(surf2)
+        self.play(FadeIn(surf2))
+
+        #cambiamos el grafico
+        self.play(Transform(esfera, toro))
 
         self.wait(2)
 
