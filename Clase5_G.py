@@ -372,3 +372,84 @@ class grafica_2(Scene):
 
         self.wait(1)
 
+
+
+class grafica_3(Scene):
+    def construct(self):
+
+        # agregamos los colores
+        rojo = "#CC0000"
+        gris = "#777777"
+        azul = "#0000FF"
+        blanco = "#FFFFFF"
+
+        # agragamos los ejes
+        ax = Axes(
+            x_range=[-3, 3, 1],
+            y_range=[-2, 2, 1],
+            x_length=16,
+            y_length=8,
+            axis_config={"include_tip":True}
+        )
+        ax.scale(1.5)
+        ax.set_color(gris)
+        ax.move_to(np.array([0, 0, 0]))
+
+        # agregamos el texto de la funcion
+        #eq1 = MathTex("y = e^{kx}")
+        eq1 = MathTex("y = x^3 + k")
+        eq1.set_color(azul)
+        eq1.scale(1.5)
+        #eq1.move_to(np.array([-5.5, 3.2, 0]))
+        eq1.move_to(ax.coords_to_point(-1, 1, 0))
+
+        k = MathTex("k=")
+        k.set_color(azul)
+        k.scale(1.5)
+        #k.move_to(np.array([-6.1, 2, 0]))
+        k.move_to(ax.coords_to_point(-1.3, 0.7, 0))
+
+        # agregamos el parametro de animacion
+        t = ValueTracker(-1)
+
+        # agregamos el parametro a la pantalla
+        d = DecimalNumber(-1)
+        d.add_updater(
+            lambda z: z.set_value(t.get_value())
+        )
+        #d.move_to(np.array([-5.1, 2, 0]))
+        d.set_color(azul)
+        d.scale(1.5)
+        d.move_to(ax.coords_to_point(-0.9, 0.7, 0))
+
+        # agregamos la funcion inicial
+        curva = ax.plot(
+            #lambda x: np.exp(-3 * x)
+            lambda x: np.power(x, 3) - 1
+        )
+        curva.add_updater(
+            lambda z: z.become(ax.plot(
+                #lambda x: np.exp(t.get_value() * x),
+                lambda x: np.power(x, 3) + t.get_value(),
+                color=rojo
+            ))
+        )
+
+
+        # simulacion
+        # cambiamos el color del fondo
+        self.camera.background_color = blanco
+
+        # agregamos el texto
+        self.add(ax)
+        self.play(Write(eq1), Write(d), Write(k))
+
+        # agregamos el grafico
+        self.play(Write(curva))
+        self.play(t.animate.set_value(1), run_time=2)
+
+        self.wait(1)
+
+
+
+
