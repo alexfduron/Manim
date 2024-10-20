@@ -297,5 +297,78 @@ class grafica3D_2(ThreeDScene):
         self.wait(2)
 
 
+class grafica_2(Scene):
+    def construct(self):
 
+        # creamos los colores con los que vamos a trabajar
+        cielo = "#C4DDFF"
+        azul = "#0016DE"
+        rojo = "#B20600"
+        purpura = "#800080"
+
+        # modificamos el fondo de la pantalla
+        self.camera.background_color = cielo
+
+        # agregamos texto
+        txt1 = Text("Epicicloide")
+        txt1.set_color(RED)
+        txt1.move_to(UP * 3.5)
+
+        namex = MathTex(r"x = 2.5 \cos( \theta ) - 0.5 \cos(5 \theta)")
+        namex.set_color(BLACK)
+        namex.move_to(RIGHT * 3.5 + UP)
+
+        namey = MathTex(r"x = 2.5 \sin( \theta ) - 0.5 \sin(5 \theta)")
+        namey.set_color(BLACK)
+        namey.move_to(RIGHT * 3.5)
+
+        rango = MathTex(r"\theta \in (0.5 \pi)")
+        rango.set_color(BLACK)
+        rango.move_to(RIGHT * 3.5 + DOWN)
+
+
+        # agregamos los ejes
+        ax = Axes(
+            x_range=[-3.5,3.5,1],
+            y_range=[-3.5,3.5,1],
+            x_length=7,
+            y_length=7,
+            axis_config={"include_tip":True}
+        )
+        ax.set_color(GREY)
+        ax.move_to(np.array([-3.5,0,0]))
+
+        # agregamos los graficos
+        circulo_grande = ParametricFunction(
+            lambda u: np.array([
+                2 * np.sin(u),
+                2 * np.cos(u),
+                0
+            ]),
+            color=BLUE,
+            t_range=np.array([0, 2 * PI, 0.01])
+        )
+        circulo_grande.move_to(ax.coords_to_point(0, 0))
+
+        epicicloide = ParametricFunction(
+            lambda u: np.array([
+                2.5 * np.cos(u) - 0.5 * np.cos(5 * u),
+                2.5 * np.sin(u) - 0.5 * np.sin(5 * u),
+                0
+            ]),
+            color=purpura,
+            t_range=np.array([0, 2 * PI, 0.01])
+        )
+        epicicloide.move_to(ax.coords_to_point(0, 0))
+
+
+        # simulacion
+        self.add(txt1, ax)
+        self.play(Write(namex), Write(namey), Write(rango))
+
+        # agregamos los graficos
+        self.play(Write(circulo_grande), run_time=1)
+        self.play(Write(epicicloide), run_time=1)
+
+        self.wait(1)
 
